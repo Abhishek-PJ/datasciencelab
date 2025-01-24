@@ -57,23 +57,39 @@ df = pd.read_csv("automobile_data2.csv")
 #boxplot
 
 # Display box plot before outlier treatment
-plt.figure(figsize=(8, 6))
-sns.boxplot(x=df['price'])
-plt.title('Box Plot Before Outlier Treatment')
-plt.show()
+# plt.figure(figsize=(8, 6))
+# sns.boxplot(x=df['price'])
+# plt.title('Box Plot Before Outlier Treatment')
+# plt.show()
 
-# Identify outliers using IQR (Interquartile Range)
-Q1 = df['price'].quantile(0.25)
-Q3 = df['price'].quantile(0.75)
-IQR = Q3 - Q1
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
+# # Identify outliers using IQR (Interquartile Range)
+# Q1 = df['price'].quantile(0.25)
+# Q3 = df['price'].quantile(0.75)
+# IQR = Q3 - Q1
+# lower_bound = Q1 - 1.5 * IQR
+# upper_bound = Q3 + 1.5 * IQR
 
-# Filter the data to remove outliers
-df_filtered = df[(df['price'] >= lower_bound) & (df['price'] <= upper_bound)]
+# # Filter the data to remove outliers
+# df_filtered = df[(df['price'] >= lower_bound) & (df['price'] <= upper_bound)]
 
-# Display box plot after outlier treatment
-plt.figure(figsize=(8, 6))
-sns.boxplot(x=df_filtered['price'])
-plt.title('Box Plot After Outlier Treatment')
-plt.show()
+# # Display box plot after outlier treatment
+# plt.figure(figsize=(8, 6))
+# sns.boxplot(x=df_filtered['price'])
+# plt.title('Box Plot After Outlier Treatment')
+# plt.show()
+
+
+
+#heatmap
+
+# # Select only the numeric columns for correlation
+# numeric_df = df.select_dtypes(include=[float, int])
+
+# # Calculate the correlation matrix
+# correlation_matrix = numeric_df.corr()
+
+# # Create the heatmap
+# plt.figure(figsize=(10, 8))
+# sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
+# plt.title('Heatmap of Attribute Relationships')
+# plt.show()
