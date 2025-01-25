@@ -48,7 +48,6 @@ df = pd.read_csv("automobile_data2.csv")
 
 #violinplot
 
-# plt.figure(figsize=(8, 6))
 # sns.violinplot(x='fuel-type', y='price', data=df)
 # plt.title('Price Distribution by Fuel Type')
 # plt.show()
@@ -57,7 +56,6 @@ df = pd.read_csv("automobile_data2.csv")
 #boxplot
 
 # Display box plot before outlier treatment
-# plt.figure(figsize=(8, 6))
 # sns.boxplot(x=df['price'])
 # plt.title('Box Plot Before Outlier Treatment')
 # plt.show()
@@ -73,7 +71,6 @@ df = pd.read_csv("automobile_data2.csv")
 # df_filtered = df[(df['price'] >= lower_bound) & (df['price'] <= upper_bound)]
 
 # # Display box plot after outlier treatment
-# plt.figure(figsize=(8, 6))
 # sns.boxplot(x=df_filtered['price'])
 # plt.title('Box Plot After Outlier Treatment')
 # plt.show()
@@ -89,7 +86,6 @@ df = pd.read_csv("automobile_data2.csv")
 # correlation_matrix = numeric_df.corr()
 
 # # Create the heatmap
-# plt.figure(figsize=(10, 8))
 # sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
 # plt.title('Heatmap of Attribute Relationships')
 # plt.show()
