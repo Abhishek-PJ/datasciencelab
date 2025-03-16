@@ -55,13 +55,23 @@ print(f"Best k value: {best_k}")
 # Step 11: Train the final KNN model with best k value
 knn_best = KNeighborsClassifier(n_neighbors=best_k)
 knn_best.fit(X_train_scaled, y_train)
-y_pred_best = knn_best.predict(X_test_scaled)
+
+# Predictions
+y_train_pred = knn_best.predict(X_train_scaled)
+y_test_pred = knn_best.predict(X_test_scaled)
 
 # Step 12: Model Performance Metrics
-print("\nClassification Report:\n", classification_report(y_test, y_pred_best))
+train_accuracy = accuracy_score(y_train, y_train_pred)
+test_accuracy = accuracy_score(y_test, y_test_pred)
+
+print(f"Training Accuracy: {train_accuracy:.4f}")
+print(f"Testing Accuracy: {test_accuracy:.4f}")
+
+# Step 12: Model Performance Metrics
+print("\nClassification Report:\n", classification_report(y_test, y_test_pred))
 
 # Step 13: Confusion Matrix
-conf_matrix = confusion_matrix(y_test, y_pred_best)
+conf_matrix = confusion_matrix(y_test, y_test_pred)
 
 # Step 14: Plot Confusion Matrix
 plt.figure(figsize=(6,4))
