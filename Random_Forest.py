@@ -50,18 +50,31 @@ print("Best Parameters Found:", best_params)
 rf_best = RandomForestClassifier(**best_params, random_state=42)
 rf_best.fit(X_train, y_train)
 
-# Step 9: Predict the test set results
-y_pred = rf_best.predict(X_test)
+# Step 9: Predict the test set and train set results
+
+# Compute Testing Accuracy
+y_test_pred = rf_best.predict(X_test)
+test_accuracy = accuracy_score(y_test, y_test_pred)
+
+
+# Compute Training Accuracy
+y_train_pred = rf_best.predict(X_train)
+train_accuracy = accuracy_score(y_train, y_train_pred)
+
+
+# Print Training and Testing Accuracy
+print("\nTraining Accuracy:", train_accuracy)
+print("Testing Accuracy:", test_accuracy)
 
 # Step 10: Evaluate the Model
 # Compute Confusion Matrix
-conf_matrix = confusion_matrix(y_test, y_pred)
-accuracy = accuracy_score(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_test_pred)
+accuracy = accuracy_score(y_test, y_test_pred)
 
 # Display evaluation metrics
 print("\nConfusion Matrix:\n", conf_matrix)
 print("\nAccuracy Score:", accuracy)
-print("\nClassification Report:\n", classification_report(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_test_pred))
 
 # Step 11: Visualizing Results
 
