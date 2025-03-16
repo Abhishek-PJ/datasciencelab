@@ -1,4 +1,3 @@
-# Import necessary libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,19 +8,15 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # Step 1: Load the dataset
-url = "https://raw.githubusercontent.com/dataprofessor/data/master/breast_cancer_data.csv"
-df = pd.read_csv(url)
-
-# Step 2: Inspect dataset
-print(df.info())  # Check data types and missing values
-print(df.head())  # Display first few rows
-print(df.describe())  # Statistical summary
+df = pd.read_csv('breastcancer2 lab.csv')
+df.head(20)
 
 # Step 3: Drop the 'id' column as it's not useful
 df.drop(columns=['id'], inplace=True)
 
-# Step 4: Convert categorical 'diagnosis' to numerical (M=1, B=0)
 df['diagnosis'] = df['diagnosis'].map({'M': 1, 'B': 0})
+
+df.fillna(df.drop(columns=['diagnosis']).mean(), inplace=True)
 
 # Step 5: Feature Selection (texture_mean, radius_mean) and Target Variable (diagnosis)
 X = df[['texture_mean', 'radius_mean']]
@@ -74,4 +69,7 @@ sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=['Benign
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
+plt.show()
+
+sns.heatmap(df.select_dtypes(exclude=['object']).corr())
 plt.show()
